@@ -1,13 +1,13 @@
-alternative,description,pct_total_erosion_change,cells_treated,pct_reduced_per_1000_cells,pig_cells,road_cells,terrace_cells
-L_P,Eliminate all feral pigs,-4.9,13786,0.4,13786,0,0
-L_R,Fix all road crossings,-0.4,319,1.1,0,319,0
-L_T,Fix all fill terraces,-97.6,6585,14.8,0,0,6585
-L_P+R,"Eliminate all feral pigs, fix all road crossings (1 + 2)",-5.4,13786,0.4,13786,319,0
-F_P,Remove feral pigs from fenced areas,0.0,314,0.0,633,0,0
-R_200,Fix road crossings & fill terraces within 200 m of a road crossing,-30.3,1739,17.4,0,319,1420
-VH_T,Fix fill terraces on highest 2% erosion cells (> 19.3 T/yr),-19.2,965,19.9,0,0,965
-VH_P,Eliminate feral pigs on highest 2% erosion cells,-0.6,520,1.1,520,0,0
-VH_A,Fix fill terraces & disturbance on highest 2% erosion cells,-19.6,1521,12.9,538,18,965
-H_T,Fix fill terraces on highest 9% erosion cells (> 16.8 T/yr),-77.3,3529,21.9,0,0,3529
-H_P,Eliminate feral pigs on highest 9% erosion cells,-2.7,2021,1.3,2021,0,0
-H_A,Fix fill terraces & disturbance on highest 9% erosion cells,-77.9,5604,13.9,2048,27,3529
+alternative,description,pct_total_erosion_change,cells_treated,pct_reduced_per_1000_cells,note
+L_P,Eliminate all feral pigs,-4.9,14105,0.3,
+L_R,Fix all road crossings,-0.4,319,1.1,
+L_T,Fix all fill terraces,-97.6,6585,14.8,
+L_P+R,"Eliminate all feral pigs, fix all road crossings (1 + 2)",-5.4,14105,0.4,
+F_P,Remove feral pigs from fenced areas,0.0,633,0.0,
+R_200,Fix road crossings & fill terraces within 200 m of a road crossing,-30.3,1739,17.4,
+VH_T,Fix fill terraces on highest 2% erosion cells (> 19.3 T/yr),-19.2,965,19.9,
+VH_P,Eliminate feral pigs on highest 2% erosion cells,-0.6,520,1.1,
+VH_A,Fix fill terraces & disturbance on highest 2% erosion cells,-19.6,1521,12.9,check: road cells counted twice in sheet total
+H_T,Fix fill terraces on highest 9% erosion cells (> 16.8 T/yr),-77.3,3529,21.9,
+H_P,Eliminate feral pigs on highest 9% erosion cells,-2.7,2021,1.3,
+H_A,Fix fill terraces & disturbance on highest 9% erosion cells,-77.9,5604,13.9,check: road cells counted twice in sheet total
