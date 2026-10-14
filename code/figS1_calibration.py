@@ -17,7 +17,7 @@ for ax, g, title, color, lim in [(axes[0], "c", "A. Ephemeral", "#C65B2B", (19, 
     ax.text(0.97, 0.05, f"R² = {r2:.2f}", transform=ax.transAxes, ha="right", va="bottom", color="#555")
     ax.set_xlim(*lim); ax.set_ylim(*lim)
     ax.set_title(title, fontweight="bold")
-    ax.set_xlabel("USGS modeled (T/yr)"); ax.set_ylabel("BBN modeled (T/yr)")
+    ax.set_xlabel("USGS modeled (tonnes/yr)"); ax.set_ylabel("BBN modeled (tonnes/yr)")
     ax.spines[["top", "right"]].set_visible(False)
     print(f"{title}: n={len(x)}, R2={r2:.4f}")
 plt.tight_layout()

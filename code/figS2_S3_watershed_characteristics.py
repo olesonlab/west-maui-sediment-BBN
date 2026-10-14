@@ -26,7 +26,7 @@ for groups, color, out in [("ab", "#1f6aa5", "FigureS2.png"), ("cd", "#c45a2c", 
         r2 = np.corrcoef(x, y)[0, 1] ** 2
         ax.text(0.97, 0.05, f"R² = {r2:.2f}", transform=ax.transAxes, ha="right", va="bottom", color="0.3")
         ax.set_title(title, fontweight="bold"); ax.set_xlabel(xlabel)
-        ax.set_ylabel("Modeled bank erosion (T/yr)")
+        ax.set_ylabel("Modeled bank erosion (tonnes/yr)")
         ax.spines[["top", "right"]].set_visible(False)
         ax.xaxis.set_major_formatter(mt.FuncFormatter(lambda v, _: f"{v/1000:.0f}k" if abs(v) >= 10000 else f"{v:g}"))
         print(f"{out} {title}: R2={r2:.3f}")

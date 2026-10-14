@@ -5,7 +5,7 @@ Scenario results, landowner analysis, and subwatershed characteristics used to g
 ## Files
 
 **Results-scenario-landowner-subwatershed.xlsx**
-- `Scenario_results`: bank erosion (T/yr), % change, and cells treated under each of the 12 management alternatives (source for Table 2 and its cost-effectiveness ratios)
+- `Scenario_results`: bank erosion (tonnes/yr), % change, and cells treated under each of the 12 management alternatives (source for Table 2 and its cost-effectiveness ratios)
 - `Strategy_eval_table`: strategy evaluation table (Table 2 in manuscript)
 - `Landowner_analysis` / `Landowner_analysis_Feb_23` / `Landowner_analysis_Feb_23_figs`: erosion results stratified by landowner (Figure 6)
 - `Subwatershed_analysis`: subwatershed-level scenario results (Figure 5)
