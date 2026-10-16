@@ -39,27 +39,29 @@ west-maui-sediment-BBN/
 
 ## Reproducing the figures
 
-Figure 7, Figures S1-S3 and the cost-effectiveness values in Table 2 are generated directly from `data/Results-scenario-landowner-subwatershed.xlsx`:
+Figures 6 and 7, Figures S1-S3 and the cost-effectiveness values in Table 2 are generated directly from `data/Results-scenario-landowner-subwatershed.xlsx`:
 
 ```bash
 pip install -r code/requirements.txt
+Rscript -e 'install.packages(c("ggplot2", "readxl"))'
 bash code/run_all.sh
 ```
 
-Outputs are written to `figures/` and `code/table2_values.csv`. Tested with Python 3.13 (matplotlib 3.11, numpy 2.5) and Python 3.10 (matplotlib 3.10, numpy 2.2), openpyxl 3.1; outputs are identical.
+Outputs are written to `figures/`, `code/table2_values.csv` and `code/fig6_values.csv`. Tested with Python 3.13 (matplotlib 3.11, numpy 2.5) and Python 3.10 (matplotlib 3.10, numpy 2.2), openpyxl 3.1; outputs are identical. Figure 6 tested with R 4.3, ggplot2 3.4 and readxl 1.4.
 
 | Output | Script | Workbook source |
 |---|---|---|
+| Figure 6 | `fig6_landowner.R` | `Landowner_analysis`, rows 4, 11, 12, 14, 15, 17 (R_200 uses the "(ORIGINAL)" row) |
 | Figure 7 | `fig7_cumulative_benefit.py` | `baseline_values`, columns E-K, rows 3-14 |
 | Figure S1 | `figS1_calibration.py` | `Subwatershed characteristics` (validation subwatersheds) |
 | Figures S2, S3 | `figS2_S3_watershed_characteristics.py` | `Subwatershed characteristics` |
 | Table 2 ratios | `table2_cost_effectiveness.py` | `Scenario_results` |
 
-Figures 1-6 were produced outside this code base: field photographs (Figure 1), ArcGIS (Figures 2 and 4), GeNIe 2.0 (Figure 3), and R/ggplot2 (Figures 5 and 6). The BBN itself runs in ARIES (see Model below).
+Figures 1-5 were produced outside this code base: field photographs (Figure 1), ArcGIS (Figures 2 and 4), GeNIe 2.0 (Figure 3), and R/ggplot2 (Figure 5). `fig6_landowner.R` is adapted from W. Goodell's original ggplot2 script; it now computes the per-landowner percentages that were previously added to the exported figure by hand. The BBN itself runs in ARIES (see Model below).
 
 ### Use of AI-assisted tools
 
-The plotting and regression code in `code/` was drafted with Claude (Anthropic) and checked by the authors against the source workbook. This use is disclosed in the manuscript's Methods and AI declaration, following Elsevier's generative AI policy for journals.
+The plotting and regression code in `code/` (including the Figure 6 adaptation) was drafted with Claude (Anthropic) and checked by the authors against the source workbook. This use is disclosed in the manuscript's Methods and AI declaration, following Elsevier's generative AI policy for journals.
 
 ## Model
 

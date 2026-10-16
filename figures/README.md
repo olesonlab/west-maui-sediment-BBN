@@ -9,7 +9,7 @@ All figures as submitted to *Marine Pollution Bulletin*. See the manuscript for 
 | Figure3_BBN.png | Bayesian belief network structure (GeNIe 2.0) |
 | Figure4_2panel.jpg | Modeled bank erosion (baseline) and erosion hotspot maps |
 | Figure5_subwatershed.jpg | % erosion reduction by subwatershed across all 12 alternatives |
-| Figure6_landowner.pdf | Bank erosion by major landowner under select alternatives (vector) |
+| Figure6_landowner.pdf † | Bank erosion (tonnes/yr) by major landowner under select alternatives (vector; PNG copy at 300 dpi) |
 | Figure7.png † | Cumulative benefit curves for Overall, MLP, and State lands (two panels) |
 | FigureS1.png † | Calibration curves: ephemeral (R² = 0.94) and perennial-intermittent (R² = 0.78) |
 | FigureS2.png † | Modeled bank erosion vs. watershed characteristics, perennial-intermittent |
