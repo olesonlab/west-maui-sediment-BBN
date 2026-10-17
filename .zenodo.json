@@ -1,0 +1,22 @@
+{
+  "title": "Code and data for: Ridge-to-reef sediment management under uncertainty: a Bayesian belief network approach",
+  "upload_type": "software",
+  "description": "Results workbook, figure and table code (Python and R), figures and Supplementary Information for Oleson et al., 'Ridge-to-reef sediment management under uncertainty: a Bayesian belief network approach' (submitted to Marine Pollution Bulletin). The code regenerates Figures 6, 7 and S1-S3, the Table 2 cost-effectiveness values and the graphical abstract from data/Results-scenario-landowner-subwatershed.xlsx. See README.md.",
+  "creators": [
+    {"name": "Oleson, Kirsten L. L.", "affiliation": "University of Hawaiʻi at Mānoa"},
+    {"name": "Barnes, Megan D.", "affiliation": "University of Hawaiʻi at Mānoa"},
+    {"name": "Bagstad, Kenneth J.", "affiliation": "U.S. Geological Survey"},
+    {"name": "Callender, Tova", "affiliation": "West Maui Ridge to Reef Initiative"},
+    {"name": "Cerovski-Darriau, Corina", "affiliation": "U.S. Geological Survey"},
+    {"name": "Falinski, Kim", "affiliation": "The Nature Conservancy"},
+    {"name": "Goodell, Whitney", "affiliation": "University of Hawaiʻi at Mānoa"},
+    {"name": "Hilleary, Michelle", "affiliation": "U.S. Fish & Wildlife Service"},
+    {"name": "Stock, Jonathan", "affiliation": "U.S. Geological Survey"},
+    {"name": "Voigt, Brian"},
+    {"name": "Ancona, Zachary H.", "affiliation": "U.S. Geological Survey"}
+  ],
+  "keywords": ["Bayesian belief network", "streambank erosion", "sediment management", "coral reef", "ridge-to-reef", "structured decision making", "West Maui", "Hawaii"],
+  "license": "cc-by-4.0",
+  "access_right": "open",
+  "language": "eng"
+}
