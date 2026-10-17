@@ -7,4 +7,5 @@ python fig7_cumulative_benefit.py
 python figS1_calibration.py
 python figS2_S3_watershed_characteristics.py
 python table2_cost_effectiveness.py
+python graphical_abstract.py
 Rscript fig6_landowner.R

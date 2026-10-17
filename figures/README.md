@@ -15,3 +15,4 @@ All figures as submitted to *Marine Pollution Bulletin*. See the manuscript for 
 | FigureS2.png † | Modeled bank erosion vs. watershed characteristics, perennial-intermittent |
 | FigureS3.png † | Modeled bank erosion vs. watershed characteristics, ephemeral |
 | Figure7_eff.png | Earlier export of Figure 7 (same content) |
+| GraphicalAbstract.tif/.png/.pdf † | Graphical abstract, laid out in code from Figures 1 and 4 and the results workbook |
