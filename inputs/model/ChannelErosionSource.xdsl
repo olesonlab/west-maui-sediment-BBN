@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<smile version="1.0" id="Network1" numsamples="1000" discsamples="10000">
+	<nodes>
+		<cpt id="DisturbanceType">
+			<state id="FeralPigs" />
+			<state id="RoadCrossing" />
+			<state id="MultipleDisturbance" />
+			<state id="Undisturbed" />
+			<probabilities>0.15 0.1 0.05 0.7</probabilities>
+		</cpt>
+		<cpt id="FillTerrace">
+			<state id="FillTerracePresent" />
+			<state id="FillTerraceAbsent" />
+			<probabilities>0.4 0.6</probabilities>
+		</cpt>
+		<cpt id="Susceptibility">
+			<state id="High" />
+			<state id="Moderate" />
+			<state id="Low" />
+			<probabilities>0.25 0.5 0.25</probabilities>
+		</cpt>
+		<cpt id="MaximumBankErosion">
+			<state id="VeryHigh" />
+			<state id="High" />
+			<state id="Moderate" />
+			<state id="Low" />
+			<state id="VeryLow" />
+			<parents>FillTerrace Susceptibility DisturbanceType</parents>
+			<probabilities>0.65 0.35 0 0 0 0.8 0.2 0 0 0 0.85 0.15 0 0 0 0.6 0.4 0 0 0 0.55 0.4 0.05 0 0 0.7 0.3 0 0 0 0.75 0.25 0 0 0 0.5 0.4 0.1 0 0 0.45 0.4 0.15 0 0 0.6 0.4 0 0 0 0.65 0.35 0 0 0 0.4 0.4 0.2 0 0 0 0 0 0.3 0.7 0 0 0 0.45 0.55 0 0 0 0.5 0.5 0 0 0 0 1 0 0 0 0.2 0.8 0 0 0 0.35 0.65 0 0 0 0.4 0.6 0 0 0 0 1 0 0 0 0.1 0.9 0 0 0 0.25 0.75 0 0 0 0.3 0.7 0 0 0 0 1</probabilities>
+		</cpt>
+	</nodes>
+	<extensions>
+		<genie version="1.0" app="GeNIe 2.0.5494.1" name="Network1" faultnameformat="nodestate">
+			<node id="MaximumBankErosion">
+				<name>MaximumBankErosion</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>368 57 446 109</position>
+				<comment>Assumptions:\nFill terrace = more erosion - most important by several orders of magnitude\nRoad crossings potentially worse than feral pigs - though some interaction\nNo road crossings without fill terraces\nDisturbance second then susceptibility (USGS map between drainage area and stream gradient). \n</comment>
+				<barchart active="true" width="128" height="108" />
+			</node>
+			<node id="DisturbanceType">
+				<name>DisturbanceType</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>143 211 227 263</position>
+				<barchart active="true" width="229" height="100" />
+			</node>
+			<node id="FillTerrace">
+				<name>FillTerrace</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>410 204 491 244</position>
+				<comment>For now we use the proximity to agricultural land as the data source for this node. This data only exists for a single watershed for now, but will eventually exist for all five watersheds. 80% fill terrace, 20% not fill terrace along ag fields\n\nData Source: Proximity to agricultural land from 1950s era agricultur survey.\n</comment>
+				<barchart active="true" width="225" height="64" />
+			</node>
+			<node id="Susceptibility">
+				<name>Susceptibility</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>699 201 780 241</position>
+				<comment>Data Source: Modeled data layer from John and Corrina. Values range from 0 - 1.\n\n0 when the rainfall is &lt; 10mm/hr. Use the mapped data when the rainfall is &gt;10mm/hr.</comment>
+				<barchart active="true" width="128" height="72" />
+			</node>
+		</genie>
+	</extensions>
+</smile>

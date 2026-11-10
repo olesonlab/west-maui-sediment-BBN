@@ -1,0 +1,15 @@
+figure,characteristic,r2
+S2,susc,0.055
+S2,fill,0.999
+S2,pigonly,0.944
+S2,road,0.172
+S2,area,0.813
+S2,pmean,0.455
+S2,ptot,0.775
+S3,susc,0.466
+S3,fill,0.994
+S3,pigonly,0.901
+S3,road,0.014
+S3,area,0.782
+S3,pmean,0.851
+S3,ptot,0.769

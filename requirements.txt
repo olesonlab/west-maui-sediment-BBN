@@ -1,0 +1,7 @@
+numpy
+rasterio
+pyshp
+shapely>=2
+pyproj
+openpyxl
+matplotlib

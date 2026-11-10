@@ -6,18 +6,22 @@
 
 This repository contains data, code, figures, and supplementary materials for:
 
-> Oleson, K.L.L., Barnes, M.D., Bagstad, K.J., Callender, T., Cerovski-Darriau, C., Falinski, K., Goodell, W., Hilleary, M., Stock, J., Voigt, B., and Ancona, Z.H. (*under review*). Ridge-to-reef sediment management under uncertainty: a Bayesian belief network approach. *Marine Pollution Bulletin*.
+> Oleson, K.L.L., Barnes, M.D., Bagstad, K.J., Callender, T., Cerovski-Darriau, C., Falinski, K., Goodell, W., Hilleary, M., Stock, J., Voigt, B., and Ancona, Z.H. (*under review*). Ridge-to-reef sediment management under uncertainty: a Bayesian belief network approach. *Environmental Management*.
 
-We developed an expert-elicited Bayesian belief network (BBN) model of streambank erosion for the West Maui Priority Coral Reef Conservation Area, Hawaiʻi. The model integrates three parent nodes (fill terrace presence, disturbance from feral pigs and road crossings, and bank susceptibility as shear stress) to predict bank erosion across 15 subwatersheds (97 km²). We apply the model in a structured decision analysis framework to evaluate 12 management alternatives for reducing sediment delivery to coral reefs.
+We developed an expert-elicited Bayesian belief network (BBN) model of streambank erosion for the West Maui Priority Coral Reef Conservation Area, Hawaiʻi. The model integrates three parent nodes (fill terrace presence, disturbance from feral pigs and road crossings, and bank susceptibility as shear stress) to predict bank erosion across 15 subwatersheds (84 km²). We apply the model in a structured decision analysis framework to evaluate 12 management alternatives for reducing sediment delivery to coral reefs.
 
 ## Key findings
 
-- 78% of total bank erosion originates from less than 9% of streambank length.
-- Addressing fill terraces and co-occurring disturbances at high-erosion cells (Alternative H_A) reduces bank erosion by 78% while treating only 9% of stream length.
-- Fixing fill terraces within 200 m of road crossings (Alternative R_200) reduces bank erosion by 30% in a small, feasible footprint. Pig and road-crossing actions alone reduce it by less than 6%.
-- Reductions are large enough to plausibly lower nearshore sediment concentrations below documented coral stress thresholds.
+- The final model run predicts 908 tonnes/yr of bank erosion, 1.5% below the USGS sediment budget.
+- 78% of bank erosion comes from 42 km of stream (22% of the 19,222 modeled stream cells), and 20% from 9.7 km (5%).
+- Treating fill terraces and co-occurring disturbances at the high-erosion cells (Alternative H_A) reduces bank erosion by 78%.
+- Fixing fill terraces within 200 m of road crossings (Alternative R_200) reduces bank erosion by 30%. Pig and road-crossing actions alone reduce it by less than 6%.
 
-## Repository structure
+## Version 1.1.0 (final model run)
+
+Version 1.1.0 adds the GeNIe model file, the final ARIES rasters (baseline and 12 alternatives), the subwatershed and land-tenure layers, and the scripts that regenerate Figs. 2–7 and S1–S3, Table 2 cost-effectiveness values and Tables S3, S5 and S6 from the rasters. The submitted manuscript uses these outputs throughout. Run `bash run_all.sh` from the repository root (`pip install -r requirements.txt` first). See `docs/README_v1.1.0.md` for contents and methods notes. The v1.0.0 files below, built from the earlier results workbook, are retained for the record.
+
+## Repository structure (v1.0.0)
 
 ```
 west-maui-sediment-BBN/
@@ -62,7 +66,7 @@ Figures 1-5 were produced outside this code base: field photographs (Figure 1), 
 
 ### Use of AI-assisted tools
 
-The plotting and regression code in `code/` (including the Figure 6 adaptation) was drafted with Claude (Anthropic) and checked by the authors against the source workbook. This use is disclosed in the manuscript's Methods and AI declaration, following Elsevier's generative AI policy for journals.
+The plotting and regression code in `code/` (including the Figure 6 adaptation) was drafted with Claude (Anthropic) and checked by the authors against the source workbook. This use is disclosed in the manuscript's Methods and AI declaration, following the journal's generative AI policy. The v1.1.0 scripts in `scripts/` were drafted with AI assistance (Claude, Anthropic; Perplexity) and checked by the authors against the final rasters.
 
 ## Model
 
@@ -78,17 +82,17 @@ The BBN was built in [GeNIe 2.0](https://www.bayesfusion.com/) and implemented w
 
 ## Study area
 
-West Maui Priority Coral Reef Conservation Area, Maui, Hawaiʻi. 15 subwatersheds, 97 km², spanning perennial-intermittent (northern) and ephemeral (southern) flow regimes. Major landowners: Maui Land & Pine, State of Hawaiʻi (including DHHL), and Kāʻanapali Land Management Corporation.
+West Maui Priority Coral Reef Conservation Area, Maui, Hawaiʻi. 15 subwatersheds, 84 km², spanning perennial-intermittent (northern) and ephemeral (southern) flow regimes. Major landowners: Maui Land & Pine, State of Hawaiʻi (including DHHL), and Kāʻanapali Land Management Corporation.
 
 ## Data availability
 
-Spatial input datasets are available from the U.S. Geological Survey ScienceBase repository (Stock and Cerovski-Darriau, 2021) and the Hawaiʻi Division of Aquatic Resources. Model outputs and scenario results are provided in `data/`. Additional data are available from the corresponding author on request.
+Spatial input datasets are available from the U.S. Geological Survey ScienceBase repository (Stock and Cerovski-Darriau, 2021) and the Hawaiʻi Division of Aquatic Resources. Final model rasters are in `inputs/scenarios/`; earlier scenario results are in `data/`. Additional data are available from the corresponding author on request.
 
 ## Citation
 
 If you use this code or data, please cite:
 
-> Oleson et al. (*under review*). Ridge-to-reef sediment management under uncertainty: a Bayesian belief network approach. *Marine Pollution Bulletin*.
+> Oleson et al. (*under review*). Ridge-to-reef sediment management under uncertainty: a Bayesian belief network approach. *Environmental Management*.
 
 ## Contact
 

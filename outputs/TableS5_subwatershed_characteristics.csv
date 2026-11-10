@@ -1,0 +1,17 @@
+subwatershed,flow_type,usgs_t_yr,modeled_final_t_yr,stream_cells,mean_susceptibility_dem,fill_terrace_cells,pig_only_cells,road_crossing_and_multiple_cells,area_km2,mean_annual_precip_mm,total_annual_precip_mm
+Honolua Stream,perennial-intermittent,91.4,166.9,2195,310,1004,1689,15,10.96,2394,452453
+Mokuleʻia Bay,perennial-intermittent,23.3,26.0,339,273,158,298,6,0.48,1415,14147
+Kahauiki,perennial-intermittent,26.9,26.2,388,457,153,374,14,1.68,1526,42726
+Mokupeʻa Gulch,perennial-intermittent,45.9,45.2,790,582,262,783,7,4.03,1934,131512
+Honokahua Stream,perennial-intermittent,44.9,40.5,827,727,233,826,1,6.65,2188,253792
+Napili 2-3,perennial-intermittent,43.7,39.3,592,372,230,548,44,1.98,1249,43707
+Napili 4-5,perennial-intermittent,55.7,50.7,752,528,297,745,7,2.41,1644,65744
+Honokeana,perennial-intermittent,42.6,38.3,601,351,228,585,16,1.94,1294,42691
+Kaʻōpala Gulch,perennial-intermittent,62.0,73.5,957,623,438,777,8,2.36,1686,64076
+Kahana Stream,perennial-intermittent,285.2,211.9,2857,703,1224,2706,37,11.68,2128,419288
+Mahinahina,ephemeral,44.9,39.6,1479,522,625,1250,144,5,1341,113993
+Honokōwai Stream,ephemeral,62.0,55.7,3148,839,847,2956,69,15.18,2628,675403
+Hanakaʻōʻō,ephemeral,25.9,24.3,914,718,374,836,45,5.94,1311,138921
+Kāʻanapali-Kahua,ephemeral,25.1,23.2,893,369,371,788,93,3.35,781,42156
+Wahikuli Gulch,ephemeral,42.4,46.6,2490,888,749,1909,21,10.29,1932,338058
+Total,,921.9,907.8,19222,,7193,17070,527,83.93,,
