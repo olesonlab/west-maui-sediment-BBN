@@ -21,7 +21,7 @@ tot = 0; ut = 0; study = np.zeros(b.shape, bool)
 print("subwatershed,usgs_t_yr,final_t_yr,pct_diff")
 for n, ks, u in rows:
     m = (b > 0) & np.isin(ws, ks); study |= m; s = (b[m] * A[m]).sum(); tot += s; ut += u
-    print(f"{n},{u:.1f},{s:.1f},{(s-u)/u*100:.1f}")
+    print(f"{n},{u:.2f},{s:.1f},{(s-u)/u*100:.1f}")
 print(f"Total,{ut:.1f},{tot:.1f},{(tot-ut)/ut*100:.1f}")
 v = b[study]; a = A[study]; t = v * a
 for lab, lo in (("very high (>=19.31)", 19.3), ("high + very high (>=16.78)", 16.7)):

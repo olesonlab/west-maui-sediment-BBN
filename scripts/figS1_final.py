@@ -1,9 +1,22 @@
 """Fig. S1 from the final model run (NHDPlus network): BBN vs USGS bank erosion
-for the validation subwatersheds. Final-run values from table_s3_final_run.py."""
-import numpy as np, matplotlib; matplotlib.use('Agg'); import matplotlib.pyplot as plt
-eph = {"Honokowai": (61.97, 55.7), "Ka'anapali-Kahua": (25.12, 23.2), "Wahikuli": (42.43, 46.6)}
-per = {"Honolua": (91.39, 166.9), "Mokule'ia": (23.26, 26.0), "Mokupe'a": (45.87, 45.2), "Honokahua": (44.90, 40.5),
-       "Napili 4-5": (55.68, 50.7), "Ka'opala": (62.05, 73.5), "Kahana": (285.24, 211.9)}
+for the validation subwatersheds.
+
+Usage: figS1_final.py table_s3_final_run.txt
+Reads the USGS and final-run columns written by table_s3_final_run.py.
+Calibration subwatersheds (Kahauiki, Napili 2-3, Honokeana, Mahinahina,
+Hanakaoo) are left out, as in Table S3.
+"""
+import sys, csv, numpy as np, matplotlib; matplotlib.use('Agg'); import matplotlib.pyplot as plt
+EPH = ["Honokowai", "Ka'anapali-Kahua", "Wahikuli"]
+PER = ["Honolua", "Mokule'ia", "Mokupe'a", "Honokahua", "Napili 4-5", "Ka'opala", "Kahana"]
+vals = {}
+with open(sys.argv[1]) as f:
+    for row in csv.DictReader(f):
+        if row['subwatershed'] == 'Total': break
+        vals[row['subwatershed']] = (float(row['usgs_t_yr']), float(row['final_t_yr']))
+missing = [n for n in EPH + PER if n not in vals]
+if missing: sys.exit(f"Missing from {sys.argv[1]}: {missing}")
+eph = {n: vals[n] for n in EPH}; per = {n: vals[n] for n in PER}
 plt.rcParams.update({'font.family': 'DejaVu Sans', 'font.size': 11})
 fig, axs = plt.subplots(1, 2, figsize=(10, 4.976))
 for ax, d, col, title, lim in ((axs[0], eph, '#C55A2B', 'A. Ephemeral', (19, 69)),

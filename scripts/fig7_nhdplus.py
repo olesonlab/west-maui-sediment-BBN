@@ -11,6 +11,8 @@ from rasterio.features import rasterize
 from shapely.geometry import shape, mapping
 from shapely.ops import transform
 from pyproj import Transformer, CRS
+import os; sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import journal_style as js
 import matplotlib; matplotlib.use("Agg"); import matplotlib.pyplot as plt, matplotlib.ticker as mt
 
 base, zones, tenure, out = sys.argv[1:5]   # baseline_ken.tif, ws_ken.npy, LandTenure.shp, out prefix
@@ -36,27 +38,26 @@ with open(out + ".csv", "w", newline="") as f:
                                    "state_pct_erosion", "mlp_pct_cells", "mlp_pct_erosion"])
     w.writerows([[f"{x:.2f}" for x in r] for r in rows])
 
-plt.rcParams.update({"font.family": "sans-serif", "font.size": 9, "axes.linewidth": 0.8, "axes.edgecolor": "#444",
+js.setup(9); plt.rcParams.update({"axes.linewidth": 0.8, "axes.edgecolor": "#444",
                      "xtick.color": "#444", "ytick.color": "#444", "axes.grid": True, "grid.color": "#d0d0d0",
                      "grid.linewidth": 0.5, "axes.axisbelow": True})
 R = np.array(rows)
 series = [("Maui Land & Pine", R[:, 5], R[:, 6], "s", "#DAA520", "#8B6914"),
           ("State", R[:, 3], R[:, 4], "o", "#2171b5", "#08519c"),
           ("Overall", R[:, 1], R[:, 2], "^", "#111111", "#000000")]
-fig, axes = plt.subplots(1, 2, figsize=(8.5, 3.8), sharey=True)
+fig, axes = plt.subplots(1, 2, figsize=(js.W, 3.1), sharey=True)
 for ax, xlim, lab in [(axes[0], (0, 102), "a"), (axes[1], (0, 7), "b")]:
     for name, x, y, mk, c, ec in series:
-        ax.scatter(x, y, marker=mk, color=c, edgecolors=ec, s=50, linewidths=0.5, zorder=4, label=name, clip_on=True)
-    ax.set_xlim(*xlim); ax.set_ylim(0, 100)
+        ax.scatter(x, y, marker=mk, color=c, edgecolors=ec, s=30, linewidths=0.5, zorder=4, label=name, clip_on=True)
+    ax.set_xlim(*xlim); ax.set_ylim(0, 103); ax.set_yticks(range(0, 101, 20))
     ax.xaxis.set_major_formatter(mt.FuncFormatter(lambda v, _: f"{v:.0f}%"))
     ax.yaxis.set_major_formatter(mt.FuncFormatter(lambda v, _: f"{v:.0f}%"))
     ax.set_xlabel("% of streambanks treated"); ax.spines[["top", "right"]].set_visible(False)
     ax.text(0.03, 0.97, lab, transform=ax.transAxes, fontsize=10, fontweight="bold", va="top")
 axes[0].set_ylabel("% of bank erosion reduced"); axes[1].tick_params(labelleft=False)
 h, l = axes[0].get_legend_handles_labels()
-fig.legend(h, l, loc="lower center", ncol=3, bbox_to_anchor=(0.5, -0.05), frameon=True, edgecolor="#ccc",
+fig.legend(h, l, loc="lower center", ncol=3, bbox_to_anchor=(0.5, 0.0), frameon=True, edgecolor="#ccc",
            handletextpad=0.4, columnspacing=1.2)
-plt.tight_layout(); plt.subplots_adjust(bottom=0.2, wspace=0.08)
-fig.savefig(out + ".png", dpi=600, bbox_inches="tight", pad_inches=0.12)
-fig.savefig(out + ".pdf", bbox_inches="tight", pad_inches=0.12)
+plt.tight_layout(rect=(0, 0.1, 1, 1)); plt.subplots_adjust(wspace=0.16)
+js.save(fig, out)
 print("N", N, "E", round(E, 1)); [print([round(x, 2) for x in r]) for r in rows]

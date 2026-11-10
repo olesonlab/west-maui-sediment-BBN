@@ -14,6 +14,8 @@ from pyproj import Geod, Transformer, CRS
 from rasterio.features import rasterize
 from shapely.geometry import shape, mapping
 from shapely.ops import transform
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import journal_style as js
 import matplotlib; matplotlib.use("Agg"); import matplotlib.pyplot as plt, matplotlib.ticker as mt
 
 sd, wsf, ten, xlsx, out = sys.argv[1:6]; os.makedirs(out, exist_ok=True)
@@ -88,18 +90,20 @@ for tag, fl, fn in [("S2", "ab", "perennial-intermittent"), ("S3", "cd", "epheme
     plt.tight_layout(); fig.savefig(f"{out}/Fig{tag}_final.png", dpi=300); plt.close(fig)
 with open(f"{out}/FigS2_S3_r2.csv", "w") as f:
     f.write("figure,characteristic,r2\n"); [f.write(f"{t},{k},{v:.3f}\n") for (t, k), v in r2s.items()]
+js.setup(8)
 # ---- Fig. 5 (contribution of each subwatershed to the study-area reduction)
 cols = ["#d9f0d3", "#91cf8e", "#d6e2ef", "#93bdd6", "#2f6da8", "#fde5d2", "#f9b67f", "#fd8432", "#d7480f", "#8c2a04",
         "#e5e6f4", "#a9a9d8", "#e6e6e6", "#adadad", "#525252"]
-fig, ax = plt.subplots(figsize=(9, 4.6)); xs = np.arange(len(SC))
+fig, ax = plt.subplots(figsize=(js.W, 3.9)); xs = np.arange(len(SC))
 for j, (name, *_ ) in enumerate(SW):
     vals = np.array([rows[j]["share"][n] for n, _ in SC]); bot = np.array([sum(rows[i]["share"][n] for i in range(j)) for n, _ in SC])
     ax.bar(xs, -vals, bottom=-bot, color=cols[j], width=0.75, label=name, edgecolor="none")
 ax.set_xticks(xs, [n for n, _ in SC]); ax.set_ylim(-100, 2); ax.set_ylabel("Reduction in bank erosion (% of study-area baseline)")
 ax.yaxis.set_major_formatter(mt.FuncFormatter(lambda v, _: f"{abs(v):.0f}%")); ax.set_xlabel("Alternative")
 ax.grid(axis="y", color="#ddd", lw=0.5); ax.set_axisbelow(True)
-ax.legend(title="Subwatershed", bbox_to_anchor=(1.01, 1), loc="upper left", frameon=False, fontsize=8, title_fontsize=9)
-plt.tight_layout(); fig.savefig(f"{out}/Fig5_final.png", dpi=300); plt.close(fig)
+ax.legend(title="Subwatershed", bbox_to_anchor=(1.01, 1), loc="upper left", frameon=False, handlelength=1.2, labelspacing=0.3)
+ax.set_ylabel("Reduction in bank erosion\n(% of study-area baseline)")
+plt.tight_layout(); js.save(fig, f"{out}/Fig5_final"); plt.close(fig)
 # ---- Fig. 6 (landowners)
 sf = shapefile.Reader(ten)
 tr = Transformer.from_crs(CRS.from_wkt(open(ten[:-4] + ".prj").read()), "EPSG:4326", always_xy=True).transform
@@ -115,18 +119,18 @@ for a in F6:
 with open(f"{out}/Fig6_landowner.csv", "w", newline="") as f:
     w = csv.writer(f); w.writerow(["alternative"] + [n for _, n, _ in OW] + ["total"])
     for a in F6: w.writerow([a] + [f"{tab[a][k]:.1f}" for k, _, _ in OW] + [f"{sum(tab[a].values()):.1f}"])
-fig, ax = plt.subplots(figsize=(6.5, 4.6)); xs = np.arange(len(F6))
+fig, ax = plt.subplots(figsize=(js.W, 3.4)); xs = np.arange(len(F6))
 for i, a in enumerate(F6):
     bot = 0
     for k, n, c in OW:
         v = tab[a][k]; ax.bar(i, v, bottom=bot, color=c, width=0.75, edgecolor="white", lw=0.4, label=n if i == 0 else None)
         if a != "Baseline" and v > 12:
             pct = round(100 * (v - tab["Baseline"][k]) / tab["Baseline"][k])
-            ax.text(i, bot + v / 2, "0%" if pct == 0 else f"−{abs(pct)}%", ha="center", va="center", fontsize=7.5, color="white" if k in (2, 3) else "black")
+            ax.text(i, bot + v / 2, "0%" if pct == 0 else f"−{abs(pct)}%", ha="center", va="center", fontsize=8, color="white" if k in (2, 3) else "black")
         bot += v
-    ax.text(i, bot + 8, f"{bot:.0f}", ha="center", va="bottom", fontsize=7.5, color="#333")
+    ax.text(i, bot + 8, f"{bot:.0f}", ha="center", va="bottom", fontsize=8, color="#333")
 ax.set_xticks(xs, F6); ax.set_ylabel("Bank erosion (t/yr)"); ax.set_xlabel("Alternative"); ax.set_ylim(0, 1000)
 ax.grid(axis="y", color="#ddd", lw=0.5); ax.set_axisbelow(True)
-h, l = ax.get_legend_handles_labels(); ax.legend(h[::-1], l[::-1], bbox_to_anchor=(1.01, 0.5), loc="center left", frameon=False, fontsize=8)
-plt.tight_layout(); fig.savefig(f"{out}/Fig6_final.png", dpi=300); plt.close(fig)
+h, l = ax.get_legend_handles_labels(); ax.legend(h[::-1], l[::-1], bbox_to_anchor=(1.01, 0.5), loc="center left", frameon=False)
+plt.tight_layout(); js.save(fig, f"{out}/Fig6_final"); plt.close(fig)
 print("total", round(E0, 1), "fill", int(fill.sum()), "pig", int(pig.sum()), "road", int(road.sum()), "pig-only", int((pig & ~road).sum()))

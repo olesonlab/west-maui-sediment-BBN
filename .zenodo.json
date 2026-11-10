@@ -1,7 +1,7 @@
 {
   "title": "Code and data for: Ridge-to-reef sediment management under uncertainty: a Bayesian belief network approach",
   "upload_type": "software",
-  "description": "The Bayesian belief network model file (GeNIe 2.0), final ARIES model rasters (baseline and 12 management alternatives), subwatershed and land-tenure layers, and the Python and R code for Oleson et al., 'Ridge-to-reef sediment management under uncertainty: a Bayesian belief network approach' (submitted to Environmental Management). Version 1.1.0 adds the final-run rasters and code that regenerates Figures 4-7 and S1-S3, the Table 2 cost-effectiveness values and Tables S3, S5 and S6 from them (run_all.sh). Version 1.0.0 files built from the earlier results workbook are retained. See README.md.",
+  "description": "The Bayesian belief network model file (GeNIe 2.0), final ARIES model rasters (baseline and 12 management alternatives), subwatershed and land-tenure layers, the zonal summaries behind Table 2, and the Python and R code for Oleson et al., 'Ridge-to-reef sediment management under uncertainty: a Bayesian belief network approach' (submitted to Environmental Management). Version 1.1.0 adds the final-run rasters and code that regenerates Figures 4-7 and S1-S3, the Table 2 cost-effectiveness values and Tables S3, S5 and S6 from them (run_all.sh). Version 1.0.0 files built from the earlier results workbook are retained. See README.md.",
   "creators": [
     {
       "name": "Oleson, Kirsten L. L.",

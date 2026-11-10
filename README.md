@@ -19,7 +19,7 @@ We developed an expert-elicited Bayesian belief network (BBN) model of streamban
 
 ## Version 1.1.0 (final model run)
 
-Version 1.1.0 adds the GeNIe model file, the final ARIES rasters (baseline and 12 alternatives), the subwatershed and land-tenure layers, and the scripts that regenerate Figs. 2–7 and S1–S3, Table 2 cost-effectiveness values and Tables S3, S5 and S6 from the rasters. The submitted manuscript uses these outputs throughout. Run `bash run_all.sh` from the repository root (`pip install -r requirements.txt` first). See `docs/README_v1.1.0.md` for contents and methods notes. The v1.0.0 files below, built from the earlier results workbook, are retained for the record.
+Version 1.1.0 adds the GeNIe model file, the final ARIES rasters (baseline and 12 alternatives), the subwatershed and land-tenure layers, and the scripts that regenerate Figs. 2–7 and S1–S3, Table 2 (with the ArcGIS zonal summaries behind its percentages) and Tables S3, S5 and S6 from the rasters. The submitted manuscript uses these outputs throughout. Run `bash run_all.sh` from the repository root (`pip install -r requirements.txt` first). See `docs/README_v1.1.0.md` for contents and methods notes. The v1.0.0 files below, built from the earlier results workbook, are retained for the record.
 
 ## Repository structure (v1.0.0)
 

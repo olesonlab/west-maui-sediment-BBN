@@ -12,7 +12,8 @@ Copy these folders into the top level of olesonlab/west-maui-sediment-BBN, next 
 - `scenarios/scenario_N.tif` – the 12 alternatives from the same run. 1 L_P, 2 L_R, 3 L_T, 4 L_P+R, 6 F_P, 7 R_200, 8 VH_T, 9 H_T, 10 VH_A, 11 H_A, 12 VH_P, 13 H_P. There is no scenario 5.
 - `subwatersheds/subws_WM_final_USGS.*` – subwatershed polygons (UTM 4N). The 15 modeled subwatersheds are New_Number 2, 4, 6, 8, 9, 13, 14, 16, 20, 22, 26, 28, 30, 31, 35.
 - `ws_ken.npy` – the polygons rasterized onto the model grid (`scripts/make_ws_index.py` rebuilds it).
-- `land_tenure/LandTenure.*` – major landowner polygons used for Figs. 2, 6 and 7. Parcel attributes other than MajorOwner (TMK, assessed values, exemptions) were removed before archiving.
+- `land_tenure/LandTenure.*` – Maui County tax parcels (2,485 polygons) used for Figs. 2, 6 and 7. Only the owner-group field MajorOwner is kept. Parcel identifiers, assessed values, exemption flags and the one owner value naming a private trust (recoded to "other") were removed. The scripts read only MajorOwner, so the outputs are unchanged.
+- `zonal_summaries/*_watershed.txt` – ArcGIS zonal statistics (final run, February 2023) of the baseline and the 12 alternatives over the 15 study subwatersheds. Source of the Table 2 percentages. Subwatershed names are as in the original files (Kanauiki = Kahauiki).
 - `maui_outline.geojson` – Maui coastline for the Fig. 2 inset (US Census Bureau 2023 cartographic boundary file, cb_2023_us_county_500k).
 - `Subwatershed-characteristics.xlsx` – area, precipitation and susceptibility by subwatershed. Susceptibility was computed on the 10 m DEM stream network used to set the priors, not on the NHDPlus network of the final run.
 
@@ -24,11 +25,13 @@ Copy these folders into the top level of olesonlab/west-maui-sediment-BBN, next 
 - `fig4_final.py` – Fig. 4, baseline erosion and hotspots.
 - `fig7_nhdplus.py` – Fig. 7, cumulative benefit curves for the study area, State and MLP lands.
 - `final_tables_figs.py` – Fig. 5 (reduction by subwatershed), Fig. 6 (erosion by landowner), Figs. S2–S3 (erosion vs. subwatershed characteristics) and Tables S5–S6.
-- `figS1_final.py` – Fig. S1, BBN vs. USGS for the validation subwatersheds (R² 0.92 ephemeral, 0.77 perennial-intermittent).
+- `table2_final.py` – Table 2 action counts, percent reductions and cost-effectiveness ratios (see the script header for definitions). Percentages are relative to the 882.7 tonnes/yr zonal baseline reported in Table S3 of the SI. (The v1.0.0 results workbook used a typed baseline of 882.3, so its v1.0.0 Table 2 values for L_P, VH_T, H_P and H_A are 0.1 point lower.)
+- `journal_style.py` – shared figure settings for Figs. 4–7 (174 mm width, Liberation Sans, 8 pt minimum). Writes PDF, EPS, 600 dpi PNG and 600 dpi TIFF.
+- `figS1_final.py` – Fig. S1, BBN vs. USGS for the validation subwatersheds, read from `table_s3_final_run.txt` (R² 0.92 ephemeral, 0.77 perennial-intermittent).
 - `hotspot_trace.py` – diagnostic trace of the high and very-high treatment sets (paths point to the original data folders).
 
 `outputs/`
-- `table2_recount.csv` – cell-level action counts and cost-effectiveness ratios for Table 2.
+- `table2_final.csv` – output of `table2_final.py`.
 - `Fig7_values.csv` – the Fig. 7 points.
 - `Fig6_landowner.csv` – erosion by landowner group (tonnes/yr). Baseline 907.8: Maui Land & Pine 633.0, State and DHHL 76.6, Kāʻanapali Land Management Corp. 78.4, other 119.8.
 - `FigS2_S3_r2.csv` – R² values for Figs. S2 and S3.

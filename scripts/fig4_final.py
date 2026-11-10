@@ -9,6 +9,8 @@ Usage: fig4_final.py baseline_ken.tif ws_ken.npy subws_WM_final_USGS.shp out_pre
 import sys, numpy as np, rasterio, shapefile
 from pyproj import Transformer, CRS
 from shapely.geometry import shape
+import os; sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import journal_style as js
 import matplotlib; matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 from matplotlib.collections import PolyCollection
@@ -46,8 +48,8 @@ def basemap(ax):
     ax.set_aspect("equal"); ax.set_xticks([]); ax.set_yticks([])
     for s in ax.spines.values(): s.set_linewidth(0.8)
 
-plt.rcParams.update({"font.family": "sans-serif", "font.size": 8, "hatch.linewidth": 0.4, "hatch.color": "#777"})
-fig, (a1, a2) = plt.subplots(1, 2, figsize=(7.2, 3.9))
+js.setup(8); plt.rcParams.update({"hatch.linewidth": 0.4, "hatch.color": "#777"})
+fig, (a1, a2) = plt.subplots(1, 2, figsize=(js.W, 2.85))
 for ax in (a1, a2): basemap(ax)
 cols = np.empty(len(v), object)
 for lo, hi, lab, c in bins: cols[(v >= lo) & (v < hi)] = c
@@ -60,27 +62,26 @@ print("high", h.sum(), "very high", vh.sum())
 leg1 = [Patch(facecolor="#e6e6e6", edgecolor="#222", label="Study subwatersheds"),
         Patch(facecolor="#e6e6e6", edgecolor="#222", hatch="////", label="Outside study area")] + \
        [Patch(facecolor=c, label=lab) for _, _, lab, c in bins]
-a1.legend(handles=leg1, loc="upper left", title="Baseline bank erosion\n(t/ha/yr)", title_fontsize=7.5, fontsize=7,
-          frameon=True, facecolor="white", edgecolor="#bbb", framealpha=0.92, alignment="left", handlelength=1.2)
+a1.legend(handles=leg1, loc="upper left", title="Baseline bank erosion\n(t/ha/yr)", title_fontsize=8, fontsize=8,
+          frameon=True, facecolor="white", edgecolor="#bbb", framealpha=1, alignment="left", handlelength=1.2)
 leg2 = [Patch(facecolor="#d7191c", label=f"Very high, ≥ 19.31 ({vh.sum():,} cells)"),
         Patch(facecolor="#f08a2c", label=f"High, 16.78–18.47 ({h.sum():,} cells)")]
-a2.legend(handles=leg2, loc="upper left", title="Erosion hotspots (t/ha/yr)", title_fontsize=7.5, fontsize=7,
-          frameon=True, facecolor="white", edgecolor="#bbb", framealpha=0.92, alignment="left", handlelength=1.2)
+a2.legend(handles=leg2, loc="upper left", title="Erosion hotspots (t/ha/yr)", title_fontsize=8, fontsize=8,
+          frameon=True, facecolor="white", edgecolor="#bbb", framealpha=1, alignment="left", handlelength=1.2)
 for ax, lab in ((a1, "a"), (a2, "b")):
-    ax.text(0.97, 0.98, lab, transform=ax.transAxes, ha="right", va="top", fontsize=11, fontweight="bold")
+    ax.text(0.97, 0.98, lab, transform=ax.transAxes, ha="right", va="top", fontsize=10, fontweight="bold")
 # room for legends on the west side
 for ax in (a1, a2):
-    ax.autoscale_view(); lo, hi = ax.get_xlim(); ax.set_xlim(lo - 0.30 * (hi - lo), hi + 0.02 * (hi - lo))
+    ax.autoscale_view(); lo, hi = ax.get_xlim(); ax.set_xlim(lo - 0.62 * (hi - lo), hi + 0.02 * (hi - lo))
 # scale bar and north arrow
 x0, x1 = a1.get_xlim(); y0, y1 = a1.get_ylim()
 sx, sy = x0 + 0.35 * (x1 - x0), y0 + 0.04 * (y1 - y0)
 for i in range(4):
     a1.add_patch(plt.Rectangle((sx + i * 1000, sy), 1000, 120, facecolor="k" if i % 2 == 0 else "w", edgecolor="k", lw=0.5, zorder=5))
-for i in (0, 2, 4): a1.text(sx + i * 1000, sy + 220, f"{i}", ha="center", va="bottom", fontsize=7)
-a1.text(sx + 4000 + 350, sy + 60, "km", va="center", fontsize=7)
+for i in (0, 2, 4): a1.text(sx + i * 1000, sy + 220, f"{i}", ha="center", va="bottom", fontsize=8)
+a1.text(sx + 4000 + 350, sy + 60, "km", va="center", fontsize=8)
 nx, ny = x0 + 0.06 * (x1 - x0), y0 + 0.05 * (y1 - y0)
 a1.annotate("", xy=(nx, ny + 1100), xytext=(nx, ny), arrowprops=dict(arrowstyle="-|>", color="k", lw=1.2))
 a1.text(nx, ny + 1250, "N", ha="center", va="bottom", fontsize=9, fontweight="bold")
-plt.tight_layout(w_pad=0.6)
-fig.savefig(out + ".png", dpi=600, bbox_inches="tight", pad_inches=0.05)
-fig.savefig(out + ".pdf", bbox_inches="tight", pad_inches=0.05)
+plt.tight_layout(w_pad=0.6, pad=0.3)
+js.save(fig, out)
